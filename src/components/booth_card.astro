@@ -3,35 +3,41 @@ import {Image} from 'astro:assets';
 import imgdata from '../images/rok.jpg';
 import FontAwesomeIcon from './icon.astro';
 import { faLocationDot , faTag} from '@fortawesome/free-solid-svg-icons'
+import { imageMetadata } from 'astro/assets/utils';
 
-interface Props {
+interface ImageModule{
+    default:ImageMetadata;
+}
+interface BoothContent{
     title:string;
     place:string;
     describe:string;
     tags:string[];
 }
-
-const {title,place,describe,tags}=Astro.props;
-
-interface ImageModule {
-  default: ImageMetadata;
+interface Props {
+    entry:BoothContent;
+    image?:ImageModule;
 }
+
+const {entry , image}=Astro.props;
+
 ---
 <div id="bc_container">
     <div id="bc_top">
-        <img id="bc_img" src={imgdata.src} />
+        {image && (
+            <Image src={image.default} alt={entry.title} loading="lazy" />
+        )}
         <div id="bc_topRight">
             <div>
-                <h1 id="bc_title">{title}</h1>
+                <h1 id="bc_title">{entry.title}</h1>
                 <h3 id="bc_club">ムズイ</h3>
             </div>
-            <div><p id="bc_place"><FontAwesomeIcon icon={faLocationDot} params={{classes: ['fa-xl']}}/>
-                {place}</p></div>
+            <div id="bc_place"><FontAwesomeIcon icon={faLocationDot} params={{classes: ['fa-width-auto']}}/><span>{entry.place}</span></div>
         </div>
     </div>
     <div id="bc_bottom">
-        <div id="bc_describe">{describe}</div>
-        <p id="bc_tag"><FontAwesomeIcon icon={faTag} params={{classes: ["fa-xl"]}}></FontAwesomeIcon>{tags.join(",")}</p>
+        <div id="bc_describe">{entry.describe}</div>
+        <p id="bc_tag"><FontAwesomeIcon icon={faTag} params={{classes: ["fa-xl"]}}></FontAwesomeIcon>{entry.tags.join(",")}</p>
     </div>
 </div>
 <style>
@@ -55,6 +61,16 @@ interface ImageModule {
     width:100%;
     margin-bottom: 1.2rem;
 }
+#bc_topRight{
+    height:100%;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    div{
+        margin-left:1rem;
+    }
+}
 #bc_title{
     color:#333333;
     font-size: 2em;
@@ -66,6 +82,9 @@ interface ImageModule {
 #bc_place{
     color:black;
     font-size:1.4em;
+    display:flex;
+    align-items: baseline;
+    gap:0.3em;
 }
 #bc_bottom{
     aspect-ratio: 3.5 / 1;
@@ -78,16 +97,6 @@ interface ImageModule {
     *{
         font-size:1.4em;
         font-weight:normal  ;
-    }
-}
-#bc_topRight{
-    height:100%;
-    width:100%;
-    display:flex;
-    flex-direction: column;
-    justify-content:space-between;
-    div:first-of-type{
-        margin-left:1rem;
     }
 }
 #bc_describe{

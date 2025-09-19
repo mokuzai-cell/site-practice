@@ -1,6 +1,19 @@
 ---
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import BoothCard from "../components/booth_card.astro"
+import {Image} from "astro:assets";
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import BoothCard from "../components/booth_card.astro";
+import boothImage from '../images/rok.jpg';
+
+const bc={
+	title:"チーバ君と遊ぼう！",
+	group:"チーバ君愛好会",
+	place:"運動場",
+	describe:"チーバ君最高",
+	tags:[]
+}
+interface ImageModule{
+	default:ImageMetadata;
+}
 ---
 
 <html lang="ja">
@@ -12,10 +25,7 @@ import BoothCard from "../components/booth_card.astro"
 	</head>
 	<body>
 		<div style="width:70%;font-size:16px">
-			<BoothCard	title="物理学実験"
-					place="445教室"
-					describe="物理の実験をします。\n予習が多いです。hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
-					tags={["a","b"]} />
+			<BoothCard	entry={bc} image={{default:boothImage}}/>
 		</div>
 	</body>
 </html>
