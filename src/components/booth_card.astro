@@ -37,7 +37,12 @@ const {entry , image}=Astro.props;
     </div>
     <div id="bc_bottom">
         <div id="bc_describe">{entry.describe}</div>
-        <p id="bc_tag"><FontAwesomeIcon icon={faTag} params={{classes: ["fa-xl"]}}></FontAwesomeIcon>{entry.tags.join(",")}</p>
+        <div id="bc_tag">
+            {entry.tags.map((tag)=>{
+                return (<FontAwesomeIcon icon={faTag} params={{classes: ["fa-xl"]}}></FontAwesomeIcon>
+                        <span>{tag}</span>);
+            })}
+        </div>
     </div>
 </div>
 <style>
