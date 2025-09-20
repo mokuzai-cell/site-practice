@@ -25,7 +25,7 @@ const {entry , image}=Astro.props;
 <div id="bc_container">
     <div id="bc_top">
         {image && (
-            <Image src={image.default} alt={entry.title} loading="lazy" />
+            <Image id="bc_img" inferSize={true} src={image.default} alt={entry.title} loading="lazy" />
         )}
         <div id="bc_topRight">
             <div>
@@ -111,8 +111,8 @@ const {entry , image}=Astro.props;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 #bc_img{
-    border:1px solid black;
+    width:auto;
+    height:100%;
 }
 </style>
