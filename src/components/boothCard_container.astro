@@ -1,16 +1,35 @@
 ---
-interface Props{
-    boothCards: string;
+import boothDatas from "../boothData.json";
+import BoothCard from "./booth_card.astro";
+
+function jsonToEntry(json:any){
+    return {
+        title:json.title,
+        group:json.group,
+        place:json.place,
+        describe:json.describe,
+        tags:json.tags
+    };
 }
+interface ImageModule {
+  default: ImageMetadata;
+}
+const imageModules = import.meta.glob<ImageModule>('../images/booth/*.{png,jpg,jpeg,gif,webp,avif}', { eager: true });
 ---
 
 <div id="first_div">
-    <slot />
+    {
+        boothDatas.map((boothData)=>{
+            const image=imageModules[`../images/booth/${boothData.imgsrc}`];
+            return <BoothCard entry={jsonToEntry(boothData)} image={image}></BoothCard>;   
+        })
+    }
 </div>
 <style>
-#first_div{
-    font-size:16px;
-    *{
+@media screen and (max-width:400px) {
+    #first_div{
+        font-size:8px;
+        width:100%;
     }
 }
 </style>

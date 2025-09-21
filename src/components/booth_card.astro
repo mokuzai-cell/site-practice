@@ -10,6 +10,7 @@ interface ImageModule{
 }
 interface BoothContent{
     title:string;
+    group:string;
     place:string;
     describe:string;
     tags:string[];
@@ -30,7 +31,7 @@ const {entry , image}=Astro.props;
         <div id="bc_topRight">
             <div>
                 <h1 id="bc_title">{entry.title}</h1>
-                <h3 id="bc_club">ムズイ</h3>
+                <h3 id="bc_club">{entry.group}</h3>
             </div>
             <div id="bc_place"><FontAwesomeIcon icon={faLocationDot} params={{classes: ['fa-width-auto']}}/><span>{entry.place}</span></div>
         </div>
@@ -39,8 +40,8 @@ const {entry , image}=Astro.props;
         <div id="bc_describe">{entry.describe}</div>
         <div id="bc_tag">
             {entry.tags.map((tag)=>{
-                return (<FontAwesomeIcon icon={faTag} params={{classes: ["fa-xl"]}}></FontAwesomeIcon>
-                        <span>{tag}</span>);
+                return (<span><FontAwesomeIcon icon={faTag} params={{classes: ["fa-xl"]}}></FontAwesomeIcon>
+                        {tag}</span>);
             })}
         </div>
     </div>
@@ -53,6 +54,7 @@ const {entry , image}=Astro.props;
     padding: 2rem;
     font-family: sans-serif;
     font-size:1em;
+    margin-bottom: 20px;
     *{
         font-weight: normal;
         margin:0;
@@ -99,19 +101,16 @@ const {entry , image}=Astro.props;
     width:95%;
     height:auto;
     padding:0.7rem;
-    *{
-        font-size:1.4em;
-        font-weight:normal  ;
-    }
 }
 #bc_describe{
+    font-size:1.4em;
     height:75%;
     white-space: pre-line;
     overflow: hidden;
-    -webkit-line-clamp: 3;
     text-overflow: ellipsis;
 }
 #bc_tag{
+    font-size:1.4em;
     height:25%;
     overflow: hidden;
     text-overflow: ellipsis;
