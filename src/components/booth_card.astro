@@ -50,7 +50,6 @@ const {entry , image}=Astro.props;
     height:198px;
     border-top: 2px solid #182c66;
     border-bottom: 2px solid #182c66;
-    padding: 12px 16px;
     font-family: sans-serif;
         *{
         margin:0;
@@ -58,8 +57,8 @@ const {entry , image}=Astro.props;
     }
 }
 .bc_top{
+    margin:12px 16px 0 16px;
     display:flex;
-    width:100%;
     margin-bottom: 8px;
     img{
         width:80px;
@@ -68,11 +67,9 @@ const {entry , image}=Astro.props;
 }
 .bc_topRight{
     height:100%;
-    width:100%;
     display:flex;
     flex-direction: column;
     justify-content:space-between;
-    padding-left: 16px;
     /*タイトル*/
     h1{
         color:#333333;
@@ -92,10 +89,11 @@ const {entry , image}=Astro.props;
     gap:0.3em;
 }
 .bc_bottom{
+    margin:0 16px 12px 16px;
     background-color: #182c66;
     color:#fefefe;
-    width:288px;
-    height:86px;
+    width:272px;
+    height:70px;
     padding:8px;
 }
 .bc_describe{
