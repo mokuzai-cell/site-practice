@@ -17,7 +17,7 @@ interface ImageModule {
 const imageModules = import.meta.glob<ImageModule>('../images/booth/*.{png,jpg,jpeg,gif,webp,avif}', { eager: true });
 ---
 
-<div id="first_div">
+<div id="bc_container">
     {
         boothDatas.map((boothData)=>{
             const image=imageModules[`../images/booth/${boothData.imgsrc}`];
@@ -26,58 +26,51 @@ const imageModules = import.meta.glob<ImageModule>('../images/booth/*.{png,jpg,j
     }
 </div>
 <style>
-@media screen and (max-width:450px) {
-    #first_div{
+#bc_container{
+    padding: 0 auto;
+    @media screen and (max-width:450px) {
         font-size:8px;
         width:100%;
     }
-}
-@media screen and (min-width:451px) and (max-width:600px) {
-    #first_div{
+    @media screen and (min-width:451px) and (max-width:600px) {
         font-size:12px;
         width:100%;
     }
-}
-@media screen and (min-width:601px) and (max-width:700px){
-    #first_div{
+    @media screen and (min-width:601px) and (max-width:700px){
         font-size:16px;
         width:100%;
     }
-}
-@media screen and (min-width:701px) and (max-width:800px){
-    #first_div{
+    @media screen and (min-width:701px) and (max-width:800px){
         font-size:20px;
         width:100%;
     }
-}
-@media screen and (min-width:801px) and (max-width:900px) {
-    #first_div{
+    @media screen and (min-width:801px) and (max-width:900px) {
         display: flex;
+
         flex-wrap: wrap;
         gap:20px;
         font-size:8px;
+        width:auto;
         >*{
             width:40%;
         }
     }
-}
-@media screen and (min-width:901px) and (max-width:1100px) {
-    #first_div{
+    @media screen and (min-width:901px) and (max-width:1100px) {
         display: flex;
         flex-wrap: wrap;
         gap:20px;
         font-size:12px;
+        width:auto;
         >*{
             width:41%;
         }
     }
-}
-@media screen and (min-width:1101px) {
-    #first_div{
+    @media screen and (min-width:1101px) {
         display: flex;
         flex-wrap: wrap;
         gap:20px;
         font-size:16px;
+        width:auto;
         >*{
             width:42%;
         }
