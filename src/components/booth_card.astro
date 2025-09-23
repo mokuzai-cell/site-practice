@@ -17,6 +17,7 @@ interface BoothContent{
 interface Props {
     entry:BoothContent;
     image?:ImageModule;
+    size?:string;
 }
 
 const {entry , image}=Astro.props;
@@ -47,18 +48,20 @@ const {entry , image}=Astro.props;
 <style>
 .bc_all{
     width:320px;
-    height:198px;
+    height:216px;
     border-top: 2px solid #182c66;
     border-bottom: 2px solid #182c66;
     font-family: sans-serif;
-        *{
+    *{
         margin:0;
         padding:0;
     }
 }
 .bc_top{
+    height:80px;
     margin:12px 16px 0 16px;
     display:flex;
+    gap:16px;
     margin-bottom: 8px;
     img{
         width:80px;
@@ -85,7 +88,7 @@ const {entry , image}=Astro.props;
     color:black;
     font-size:14px;
     display:flex;
-    align-items: baseline;
+    /*align-items: baseline;*/
     gap:0.3em;
 }
 .bc_bottom{
@@ -93,7 +96,7 @@ const {entry , image}=Astro.props;
     background-color: #182c66;
     color:#fefefe;
     width:272px;
-    height:70px;
+    height:86px;
     padding:8px;
 }
 .bc_describe{

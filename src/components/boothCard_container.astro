@@ -21,16 +21,17 @@ const imageModules = import.meta.glob<ImageModule>('../images/booth/*.{png,jpg,j
     {
         boothDatas.map((boothData)=>{
             const image=imageModules[`../images/booth/${boothData.imgsrc}`];
-            return <BoothCard entry={jsonToEntry(boothData)} image={image}></BoothCard>;   
+            return <BoothCard entry={jsonToEntry(boothData)} image={image} />;   
         })
     }
 </div>
 <style>
 #bc_container{
+    margin-left:calc(mod(100% , (320px + 16px)) / 2 - 8px);
     display:flex;
     flex-wrap: wrap;
-    gap:16px;
     row-gap: 16px;
+    gap:24px;
     /*    @media screen and (max-width:450px) {
         font-size:8px;
         width:100%;
