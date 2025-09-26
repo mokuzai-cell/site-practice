@@ -1,16 +1,15 @@
 ---
 import {Image} from "astro:assets";
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import BoothCard from "../components/booth_card.astro";
-import BoothCardContainer from "../components/boothCard_container.astro";
+import BoothCard from "../components/atoms/booth_card.vue";
+import BoothCardContainer from "../components/boothCard_container.vue";
 import boothImage from '../images/rok.jpg';
-
 const bc={
 	title:"チーバ君と遊ぼう！",
 	group:"チーバ君愛好会",
 	place:"運動場",
 	describe:"チーバ君最高",
-	tags:["ti-ba","tiba"]
+	tags:["ti-ba","tiba"],
+	img:"ti-ba.jpg",
 }
 ---
 
@@ -22,7 +21,7 @@ const bc={
 		<title>Astro</title>
 	</head>
 	<body>
-		<BoothCardContainer>
-		</BoothCardContainer>
+		<BoothCardContainer />
+
 	</body>
 </html>

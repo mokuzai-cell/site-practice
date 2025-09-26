@@ -1,5 +1,5 @@
 ---
-import boothDatas from "../boothData.json";
+import boothJson from "../boothData.json";
 import BoothCard from "./booth_card.astro";
 
 function jsonToEntry(json:any){
@@ -11,15 +11,21 @@ function jsonToEntry(json:any){
         tags:json.tags
     };
 }
-interface ImageModule {
-  default: ImageMetadata;
+function click(){
+    alert(1)
 }
+
+interface ImageModule {
+    default: ImageMetadata;
+}
+
 const imageModules = import.meta.glob<ImageModule>('../images/booth/*.{png,jpg,jpeg,gif,webp,avif}', { eager: true });
 ---
 
+<button onclick="click()">aaa</button>
 <div id="bc_container">
     {
-        boothDatas.map((boothData)=>{
+        boothJson.map((boothData)=>{
             const image=imageModules[`../images/booth/${boothData.imgsrc}`];
             return <BoothCard entry={jsonToEntry(boothData)} image={image} />;   
         })
@@ -39,7 +45,7 @@ const imageModules = import.meta.glob<ImageModule>('../images/booth/*.{png,jpg,j
     @media screen and (min-width:451px) and (max-width:600px) {
         font-size:12px;
         width:100%;
-    }
+        }
     @media screen and (min-width:601px) and (max-width:700px){
         font-size:16px;
         width:100%;

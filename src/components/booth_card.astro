@@ -7,38 +7,35 @@ interface ImageModule{
     default:ImageMetadata;
 }
 
-interface BoothContent{
+interface Props {
+    id:number;
     title:string;
     group:string;
     place:string;
     describe:string;
     tags:string[];
-}
-interface Props {
-    entry:BoothContent;
     image?:ImageModule;
-    size?:string;
 }
 
-const {entry , image}=Astro.props;
+const {id , title , group , place , describe , tags , image}=Astro.props;
 ---
 <div class="bc_all">
     <div class="bc_top">
         {image && (
-            <Image id="bc_img" inferSize={true} src={image.default} alt={entry.title} loading="lazy" />
+            <Image id="bc_img" inferSize={true} src={image.default} alt={title} loading="lazy" />
         )}
         <div class="bc_topRight">
             <div>
-                <h1>{entry.title}</h1>
-                <h3>{entry.group}</h3>
+                <h1>{title}</h1>
+                <h3>{group}</h3>
             </div>
-            <div class="bc_place"><FontAwesomeIcon icon={faLocationDot} params={{classes: ['fa-width-auto']}}/><span>{entry.place}</span></div>
+            <div class="bc_place"><FontAwesomeIcon icon={faLocationDot} params={{classes: ['fa-width-auto']}}/><span>{place}</span></div>
         </div>
     </div>
     <div class="bc_bottom">
-        <div class="bc_describe">{entry.describe}</div>
+        <div class="bc_describe">{describe}</div>
         <div class="bc_tag">
-            {entry.tags.map((tag)=>{
+            {tags.map((tag)=>{
                 return (<span><FontAwesomeIcon icon={faTag} params={{classes: ["fa-l"]}}></FontAwesomeIcon>
                         {tag}</span>);
             })}
@@ -47,8 +44,8 @@ const {entry , image}=Astro.props;
 </div>
 <style>
 .bc_all{
-    width:320px;
-    height:216px;
+    /*width:320px;
+    height:216px;*/
     border-top: 2px solid #182c66;
     border-bottom: 2px solid #182c66;
     font-family: sans-serif;
@@ -64,8 +61,8 @@ const {entry , image}=Astro.props;
     gap:16px;
     margin-bottom: 8px;
     img{
-        width:80px;
-        height:80px ;
+        height:100%;
+        width:auto;
     }
 }
 .bc_topRight{
@@ -88,8 +85,9 @@ const {entry , image}=Astro.props;
     color:black;
     font-size:14px;
     display:flex;
-    /*align-items: baseline;*/
-    gap:0.3em;
+    align-items: baseline;
+    gap:4px;
+    cursor:pointer;
 }
 .bc_bottom{
     margin:0 16px 12px 16px;
@@ -110,5 +108,9 @@ const {entry , image}=Astro.props;
     font-size:12px;
     height:25%;
     overflow: hidden;
+    >*{
+        padding-right:4px;
+        cursor: pointer;
+    }
 }
 </style>
