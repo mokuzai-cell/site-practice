@@ -1,8 +1,7 @@
 ---
-import {Image} from "astro:assets";
-import BoothCard from "../components/atoms/booth_card.vue";
 import BoothCardContainer from "../components/boothCard_container.vue";
-import boothImage from '../images/rok.jpg';
+import BoothCardFilterPc from "../components/atoms/boothCard_filter_pc.vue";
+import A from "../components/a.vue";
 const bc={
 	title:"チーバ君と遊ぼう！",
 	group:"チーバ君愛好会",
@@ -21,7 +20,6 @@ const bc={
 		<title>Astro</title>
 	</head>
 	<body>
-		<BoothCardContainer />
-
+		<BoothCardContainer client:load/>
 	</body>
 </html>
